@@ -1,15 +1,14 @@
 {
   "name": "webtech",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
+  "description": "A backend API for managing activities and feedback with real-time communication.",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node /backend/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "type": "module",
+  "author": "FSociety",
+  "license": "MIT",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
