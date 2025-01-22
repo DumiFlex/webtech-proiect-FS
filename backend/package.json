@@ -2,25 +2,33 @@
   "name": "webtech",
   "version": "1.0.0",
   "description": "A backend API for managing activities and feedback with real-time communication.",
-  "main": "server.js",
+  "main": "./src/app.js",
   "scripts": {
-    "start": "node /backend/server.js"
+    "start": "node",
+    "dev": "nodemon"
   },
   "type": "module",
   "author": "FSociety",
   "license": "MIT",
   "dependencies": {
+    "await-to-js": "^3.0.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
     "helmet": "^8.0.0",
+    "http-errors": "^2.0.0",
+    "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.16",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5",
     "sequelize-cli": "^6.6.2",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }
