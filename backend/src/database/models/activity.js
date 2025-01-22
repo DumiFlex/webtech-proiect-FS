@@ -1,6 +1,34 @@
 import { Model } from "sequelize";
+import { to } from "await-to-js";
+import { ErrorMessages } from "../../enums/index.js";
 export default (sequelize, DataTypes) => {
   class Activity extends Model {
+    async generateAccessCode() {
+      const list = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
+      var res = "";
+      for (var i = 0; i < 6; i++) {
+        var rnd = Math.floor(Math.random() * list.length);
+        res = res + list.charAt(rnd);
+      }
+
+      this.access_code = res;
+
+      await this.save();
+    }
+
+    async addParticipant(userId) {
+      const Participants = sequelize.models.Participants;
+      const [error, participant] = await to(
+        Participants.create({
+          user_id: userId,
+          activity_id: this._id,
+        })
+      );
+
+      if (error) {
+        throw new ConflictException(ErrorMessages.JOIN_FAIL);
+      }
+    }
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.

@@ -8,11 +8,7 @@ import {
 } from "../../exceptions/index.js";
 import { studentEmailRegex } from "../../utils/index.js";
 
-import {
-  sendActivationEmail,
-  sendPasswordResetEmail,
-} from "../email.service.js";
-import e from "express";
+import { emailService } from "../index.js";
 
 export async function signUpNewUser(userData) {
   let error, activationToken, emailExists, usernameExists;
@@ -68,7 +64,9 @@ export async function signUpNewUser(userData) {
     throw new InternalServerErrorException(ErrorMessages.CREATE_FAIL);
   }
 
-  [error] = await to(sendActivationEmail(newUser.email, activationToken));
+  [error] = await to(
+    emailService.sendActivationEmail(newUser.email, activationToken)
+  );
 
   if (error) {
     newUser.destroy();
@@ -142,10 +140,16 @@ export async function findUserById(_id) {
   return user;
 }
 
-export async function findAllUsers() {
+export async function findAllUsers(filter, page = 1, limit = 10) {
   let error, users;
 
-  [error, users] = await to(db.User.findAll());
+  page = parseInt(page) <= 0 ? 0 : parseInt(page) - 1;
+
+  limit = parseInt(limit) <= 0 ? 10 : parseInt(limit);
+
+  [error, users] = await to(
+    db.User.findAll({ where: filter, limit, offset: page * limit })
+  );
 
   if (error) {
     throw new InternalServerErrorException(ErrorMessages.GET_FAIL);
@@ -171,7 +175,9 @@ export async function passwordReset(username) {
     throw new InternalServerErrorException(ErrorMessages.UPDATE_FAIL);
   }
 
-  [error] = await to(sendPasswordResetEmail(user.email, resetToken));
+  [error] = await to(
+    emailService.sendPasswordResetEmail(user.email, resetToken)
+  );
 
   if (error) {
     throw new InternalServerErrorException(ErrorMessages.UPDATE_FAIL);

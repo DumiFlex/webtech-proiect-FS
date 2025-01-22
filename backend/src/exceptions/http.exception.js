@@ -48,3 +48,9 @@ export class BadGatewayException {
     throw createError(HTTPStatusCode.BAD_GATEWAY, message);
   }
 }
+
+export class NotImplementedException {
+  constructor(message = HTTPMessages.NOT_IMPLEMENTED) {
+    throw createError(HTTPStatusCode.NOT_IMPLEMENTED, message);
+  }
+}

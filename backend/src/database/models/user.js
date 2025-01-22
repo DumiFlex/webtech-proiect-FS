@@ -3,7 +3,6 @@ import { generateUniqueUserId } from "../../utils/index.js";
 import bcrypt from "bcryptjs";
 import { randomBytes } from "crypto";
 import { to } from "await-to-js";
-import db from "../database.js";
 export default (sequelize, DataTypes) => {
   class User extends Model {
     async isValidPassword(password) {
@@ -18,7 +17,7 @@ export default (sequelize, DataTypes) => {
         activationToken = randomBytes(32).toString("hex");
 
         const [error, existingToken] = await to(
-          db.User.findOne({
+          sequelize.models.User.findOne({
             where: { activation_token: activationToken },
           })
         );
@@ -44,7 +43,7 @@ export default (sequelize, DataTypes) => {
         passwordResetToken = randomBytes(32).toString("hex");
 
         const [error, existingToken] = await to(
-          db.User.findOne({
+          sequelize.models.User.findOne({
             where: { password_reset_token: passwordResetToken },
           })
         );
@@ -70,6 +69,10 @@ export default (sequelize, DataTypes) => {
       this.activation_token_expiry = null;
 
       await this.save();
+    }
+
+    async isActivated() {
+      return this.status === "active";
     }
 
     async resetPassword(newPassword) {

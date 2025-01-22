@@ -17,4 +17,8 @@ export const ErrorMessages = Object.freeze({
   INVALID_CREDENTIALS: "Invalid credentials!",
   PASSWORD_RESET_TOKEN_INVALID: "Invalid token!",
   PASSWORD_RESET_TOKEN_EXPIRED: "Password reset token has expired!",
+  INVALID_USER_ID: "Invalid user ID!",
+  INVALID_ACTIVITY_ID: "Invalid activity ID!",
+  USER_NOT_ACTIVATED: "User not activated!",
+  JOIN_FAIL: "Unable to join activity!",
 });

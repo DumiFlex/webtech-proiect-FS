@@ -9,4 +9,5 @@ export const HTTPMessages = Object.freeze({
   TOO_MANY_REQUESTS: "Too Many Requests",
   INTERNAL_SERVER_ERROR: "Internal Server Error",
   BAD_GATEWAY: "Bad Gateway",
+  NOT_IMPLEMENTED: "Not Implemented",
 });

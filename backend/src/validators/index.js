@@ -1,4 +1,10 @@
 export { default as signUpUserSchema } from "./users/signup-user.schema.js";
 export { default as activateUserSchema } from "./users/activate-user.schema.js";
 export { default as signInUserSchema } from "./users/signin-user.schema.js";
+export { default as usersParamsSchema } from "./users/params-user.schema.js";
+export { default as updateUserSchema } from "./users/update-user.schema.js";
+export { default as createActivitySchema } from "./activities/create-activity.schema.js";
+export { default as userIdSchema } from "./users/user-id.schema.js";
+export { default as activityIdSchema } from "./activities/activity-id.schema.js";
+export { default as joinActivitySchema } from "./activities/join-activity.schema.js";
 export * from "./users/password-reset.schema.js";

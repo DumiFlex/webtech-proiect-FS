@@ -9,4 +9,13 @@ export const ValidationErrorMessages = Object.freeze({
   GENDER: "Gender must be one of the following: male, female",
   ACCOUNT_TYPE: "Account type must be one of the following: student, professor",
   PROFILE_PICTURE: "Profile picture must be a valid URL",
+  SEARCH: "Search must be a string",
+  USER_TYPE: "User type must be one of the following: student, professor",
+  LIMIT: "Limit must be a number between 1 and 100",
+  OFFSET: "Offset must be a number greater than 0",
+  STATUS: "Status must be one of the following: active, inactive, banned",
+  TITLE: "Title must be a string",
+  DESCRIPTION: "Description must be a string",
+  START_DATE: "Start date must be a valid date",
+  END_DATE: "End date must be a valid date",
 });

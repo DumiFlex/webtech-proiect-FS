@@ -1,4 +1,4 @@
-import { usersRouter } from "../controllers/index.js";
+import { usersRouter, activitiesRouter } from "../controllers/index.js";
 import {
   responseInterceptor,
   exceptionHandler,
@@ -9,6 +9,7 @@ const routerSetup = (app) => {
   app
     .use(responseInterceptor)
     .use("/api/v1/users", usersRouter)
+    .use("/api/v1/activities", activitiesRouter)
     .use("*", routeNotFoundExceptionHandler)
     .use(exceptionHandler);
 };
